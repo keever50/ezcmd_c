@@ -2,7 +2,7 @@
 #define __EZCMD_H
 
 /******************************************************************************
- * Includes
+ * Included Files
  ******************************************************************************/
 
 #include <stdio.h>
@@ -18,7 +18,8 @@
  * It contains the parsing context / state
  * and a pointer to a char buffer with its size.
  * char* line will always contain the current
- * parsed argument */
+ * parsed argument
+ */
 
 struct ezcommand
 {
@@ -35,7 +36,8 @@ struct ezcommand
 /* The user can implement this to
  * get a character from any device.
  * This does not have to be blocking.
- * No input should return \0 */
+ * No input should return \0
+ */
 
 char ezcmd_getc();
 
@@ -45,30 +47,33 @@ char ezcmd_getc();
 
 /* Initializes the ezcommand structure.
  * Can be ran every time before getting
- * new commands */
+ * new commands
+ */
 
-void ezcmd_start(struct ezcommand *cmd, char* buffer,
+void ezcmd_start(struct ezcommand *cmd, char *buffer,
                  size_t buffer_len);
 
 /* Get the next argument.
- * Returns NULL when there are no more arguments */
+ * Returns NULL when there are no more arguments
+ */
 
-char* ezcmd_next_arg(struct ezcommand *cmd);
+char *ezcmd_next_arg(struct ezcommand *cmd);
 
 /* Blocking call to get commands and its arguments
  * by polling the user implemented ezcmd_getc().
  * The first argument can be returned by
  * using char* firstarg = cmd.line;
- * The rest can be extracted using ezcmd_next_arg(&cmd); */
+ * The rest can be extracted using ezcmd_next_arg(&cmd);
+ */
 
 void ezcmd_get(struct ezcommand *cmd);
 
 /* This will parse a char string to extract arguments.
  * This will not block because it does not have
- * to wait for inputs unlike ezcmd_get(&cmd); */
+ * to wait for inputs unlike ezcmd_get(&cmd);
+ */
 
 size_t ezcmd_get_parse(struct ezcommand *cmd, char *in,
                        size_t size);
-
 
 #endif /* __EZCMD_H */
