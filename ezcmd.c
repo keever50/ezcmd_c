@@ -78,6 +78,11 @@ void ezcmd_get(struct ezcommand *cmd)
     }
 }
 
+void ezcmd_restart(struct ezcommand *cmd)
+{
+  cmd->_context = NULL;
+}
+
 size_t ezcmd_get_parse(struct ezcommand *cmd, char *in, size_t size)
 {
   size_t linepos = 0;

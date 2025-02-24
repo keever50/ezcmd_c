@@ -68,6 +68,12 @@ char *ezcmd_next_arg(struct ezcommand *cmd);
 
 void ezcmd_get(struct ezcommand *cmd);
 
+/* Restarts the parser and arguments can be read
+ * from the start again.
+ */
+
+void ezcmd_restart(struct ezcommand *cmd);
+
 /* This will parse a char string to extract arguments.
  * This will not block because it does not have
  * to wait for inputs unlike ezcmd_get(&cmd);
